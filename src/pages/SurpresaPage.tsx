@@ -119,19 +119,26 @@ export default function SurpresaPage() {
               onEnded={() => setVideoFinalizado(true)} 
             />
             
+            {/* Overlay que aparece quando o vídeo termina */}
             <AnimatePresence>
               {videoFinalizado && (
                 <motion.div 
-                  initial={{ opacity: 0, y: 20 }} 
-                  animate={{ opacity: 1, y: 0 }} 
-                  transition={{ duration: 0.8 }}
+                  initial={{ opacity: 0 }} 
+                  animate={{ opacity: 1 }} 
+                  transition={{ duration: 1.5 }}
                   className="download-overlay"
                 >
-                  <h2 className="serif-subtitle mb-4">Guarde nossa história</h2>
-                  <a href={videoSurpresa} download="Carta_Aberta_Gabriel_e_Vitoria.mp4" className="btn-download">
-                    <Download size={20} />
-                    <span>Baixar Vídeo</span>
-                  </a>
+                  <div className="glass-letter" style={{ padding: '40px 24px', maxWidth: '380px', marginTop: '-10vh' }}>
+                    <span className="detalhe-topo">✦</span>
+                    <h2 className="serif-title mb-4" style={{ fontSize: '2rem' }}>O nosso "sim"</h2>
+                    <p className="texto-romantico" style={{ marginBottom: '32px' }}>
+                      Para que você possa reviver, sempre que desejar, o instante exato em que a nossa prata se tornou ouro e o nosso mar encontrou a sua calmaria definitiva.
+                    </p>
+                    <a href={videoSurpresa} download="Nosso_Noivado_Gabriel_e_Vitoria.mp4" className="btn-download">
+                      <Download size={20} />
+                      <span>Guardar nossa lembrança</span>
+                    </a>
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
