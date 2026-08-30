@@ -1,0 +1,235 @@
+/* Paleta de Cores e Reset */
+:root {
+  --branco: #FFFFFF;
+  --azul-noite: #272757;
+  --azul-petroleo: #215a60;
+  --caqui: #D6C5B3;
+  --lilas: #B5A8D5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000;
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: var(--branco);
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Fundo base que transiciona sutilmente de cor */
+.mobile-wrapper {
+  width: 100vw;
+  height: 100dvh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--azul-noite);
+  transition: background-color 2s ease;
+  overflow: hidden;
+}
+
+/* Luzes Atmosféricas (Glassmorphism dinâmico) */
+.ambient-light {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0;
+  transition: opacity 3s ease, transform 4s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.light-petroleo {
+  width: 80vw;
+  height: 80vw;
+  background: var(--azul-petroleo);
+  top: -10%;
+  left: -20%;
+}
+
+.light-lilas {
+  width: 70vw;
+  height: 70vw;
+  background: var(--lilas);
+  bottom: 10%;
+  right: -30%;
+}
+
+.light-caqui {
+  width: 60vw;
+  height: 60vw;
+  background: var(--caqui);
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ambient-light.active {
+  opacity: 0.35;
+  transform: scale(1.1);
+  animation: flutuarLuz 10s infinite alternate ease-in-out;
+}
+
+/* Tipografia e Textos */
+.poema-container {
+  position: relative;
+  z-index: 10;
+  width: 85%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.instrucao-inicial {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--caqui);
+  opacity: 0.6;
+  white-space: nowrap;
+  animation: pulsarOpacidade 3s infinite;
+}
+
+.serif-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--branco);
+}
+
+.serif-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--lilas);
+  opacity: 0.9;
+}
+
+/* Carta Final de Vidro */
+.carta-final {
+  position: relative;
+  z-index: 10;
+  width: 90%;
+  max-width: 420px;
+}
+
+.glass-letter {
+  background: rgba(28, 58, 90, 0.15);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(214, 197, 179, 0.2);
+  border-radius: 20px;
+  padding: 50px 30px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.detalhe-topo {
+  color: var(--caqui);
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.texto-romantico {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+
+.mb-4 { margin-bottom: 24px; }
+
+/* Botão Magnético */
+.btn-revelar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, var(--caqui) 0%, #b8a693 100%);
+  color: var(--azul-noite);
+  border: none;
+  border-radius: 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(214, 197, 179, 0.3);
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.btn-revelar:active {
+  transform: scale(0.95);
+  box-shadow: 0 5px 15px rgba(214, 197, 179, 0.2);
+}
+
+/* Indicadores de Progresso */
+.progresso-dots {
+  position: absolute;
+  bottom: 40px;
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--branco);
+  opacity: 0.2;
+  transition: all 0.5s ease;
+}
+
+.dot.active {
+  opacity: 0.8;
+  transform: scale(1.5);
+  background-color: var(--lilas);
+}
+
+/* Vídeo */
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 50;
+}
+
+.video-fullscreen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Animações Keyframes */
+@keyframes flutuarLuz {
+  0% { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.15) translate(20px, -20px); }
+}
+
+@keyframes pulsarOpacidade {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
