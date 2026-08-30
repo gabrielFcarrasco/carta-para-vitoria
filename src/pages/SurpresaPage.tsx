@@ -21,7 +21,6 @@ export default function SurpresaPage() {
     }, 1500);
   };
 
-  // O ": any" bloqueia a inspeção rigorosa da Vercel e garante o deploy
   const textVariants: any = {
     initial: { opacity: 0, y: 30, filter: "blur(4px)" },
     in: { 
@@ -38,6 +37,21 @@ export default function SurpresaPage() {
     }
   };
 
+  // Componente interno para manter o aviso padronizado no rodapé de todas as telas
+  const InstrucaoRodape = () => (
+    <p style={{ 
+      fontSize: '0.65rem', 
+      letterSpacing: '2px', 
+      textTransform: 'uppercase', 
+      color: 'var(--caqui)', 
+      opacity: 0.6, 
+      marginTop: '40px', 
+      animation: 'pulsarOpacidade 3s infinite' 
+    }}>
+      Toque na tela para avançar
+    </p>
+  );
+
   return (
     <div className={`mobile-wrapper step-bg-${step}`} onClick={step < 4 ? nextStep : undefined}>
       
@@ -47,50 +61,58 @@ export default function SurpresaPage() {
 
       <AnimatePresence mode="wait">
         
+        {/* TELA 1: Prata e Ouro no Anel */}
         {step === 0 && (
           <motion.div key="s0" variants={textVariants} initial="initial" animate="in" exit="out" className="poema-container">
-            <p className="instrucao-inicial">Toque suavemente na tela para avançar</p>
-            <h1 className="serif-title">O noivado é a nossa ponte.</h1>
+            <h1 className="serif-title">Olhe para este anel em sua mão.</h1>
             <p className="texto-romantico mt-4">
-              A união exata entre o que fomos e o que seremos. A prata simboliza toda a leveza, a descoberta e a base do nosso namoro, enquanto o ouro amarelo chega trazendo a força, a solidez e a promessa inquebrável do nosso casamento. 
+              Ele é a nossa ponte. A base em prata carrega a leveza e a história do nosso namoro, abraçando de forma indissociável o ouro amarelo, que sela a força, a solidez e a promessa inquebrável do nosso casamento.
             </p>
+            <InstrucaoRodape />
           </motion.div>
         )}
 
+        {/* TELA 2: A Lapidação do Diamante */}
         {step === 1 && (
           <motion.div key="s1" variants={textVariants} initial="initial" animate="in" exit="out" className="poema-container">
-            <h1 className="serif-title">Toda joia autêntica passa por processos.</h1>
+            <h1 className="serif-title">Observe esta pedra preciosa.</h1>
             <p className="texto-romantico mt-4">
-              Antes de revelar seu brilho máximo, o diamante é uma pedra sem forma que precisa de pressão para ser moldada. Da mesma maneira, cada desafio, cada alinhamento e cada conversa nossa foram a lapidação necessária para dar forma à beleza do nosso amor.
+              Antes de revelar seu brilho máximo, o diamante é uma pedra sem forma que precisa de pressão. Da mesma maneira, cada desafio e cada conversa que tivemos foram a lapidação necessária para dar forma à beleza deste amor que você agora veste.
             </p>
+            <InstrucaoRodape />
           </motion.div>
         )}
 
+        {/* TELA 3: A Gota e o Oceano */}
         {step === 2 && (
           <motion.div key="s2" variants={textVariants} initial="initial" animate="in" exit="out" className="poema-container">
-            <h1 className="serif-title">Como uma gota diante do mar...</h1>
+            <h1 className="serif-title">Moldada como uma gota d'água...</h1>
             <p className="texto-romantico mt-4">
-              Olhar para a imensidão do oceano é entender que, por mais profundas e misteriosas que sejam as águas, nós escolhemos ter a coragem e a vontade contínua de mergulhar e descobrir um ao outro todos os dias.
+              O formato exato desta joia nos lembra a imensidão do mar. Por mais profundas e misteriosas que sejam as águas, nós escolhemos ter a coragem e a vontade contínua de mergulhar e descobrir um ao outro todos os dias.
             </p>
+            <InstrucaoRodape />
           </motion.div>
         )}
 
+        {/* TELA 4: As Ondas e o Círculo da Aliança */}
         {step === 3 && (
           <motion.div key="s3" variants={textVariants} initial="initial" animate="in" exit="out" className="poema-container">
-            <h1 className="serif-title">E esse é o sentido do casamento.</h1>
+            <h1 className="serif-title">O nosso porto seguro.</h1>
             <p className="texto-romantico mt-4">
-              É ter a certeza de que as tempestades e as ondas bravas sempre vão existir lá fora... mas saber que, independentemente delas, nós sempre seremos a calmaria e o porto seguro um do outro.
+              O círculo infinito desta aliança é a certeza de que as tempestades e as ondas bravas lá fora sempre vão existir... mas independentemente delas, nós sempre seremos a calmaria um do outro.
             </p>
+            <InstrucaoRodape />
           </motion.div>
         )}
 
+        {/* TELA 5: A Carta Final */}
         {step === 4 && (
           <motion.div key="s4" variants={textVariants} initial="initial" animate="in" exit="out" className="carta-final">
             <div className="glass-letter">
               <span className="detalhe-topo">✦</span>
               <h1 className="serif-title mb-4">Para Vitória</h1>
               <p className="texto-romantico">
-                Minha agora noiva, a mulher mais linda desse mundo. Esta é a sua carta aberta, o registro do novo degrau que começamos a subir juntos.
+                Minha noiva, a mulher mais linda desse mundo. Esta é a sua carta aberta. O registro imortalizado do nosso novo degrau.
               </p>
               
               <button onClick={iniciarSurpresa} className="btn-revelar mt-4">
@@ -101,6 +123,7 @@ export default function SurpresaPage() {
           </motion.div>
         )}
 
+        {/* TELA 6: O Vídeo e Download */}
         {step === 5 && (
           <motion.div 
             key="video" 
@@ -119,7 +142,6 @@ export default function SurpresaPage() {
               onEnded={() => setVideoFinalizado(true)} 
             />
             
-            {/* Overlay que aparece quando o vídeo termina */}
             <AnimatePresence>
               {videoFinalizado && (
                 <motion.div 
@@ -147,6 +169,7 @@ export default function SurpresaPage() {
         )}
       </AnimatePresence>
       
+      {/* Indicador de progresso */}
       {step < 4 && (
         <div className="progresso-dots">
           <div className={`dot ${step >= 0 ? 'active' : ''}`} />
