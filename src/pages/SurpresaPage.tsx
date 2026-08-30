@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Download } from 'lucide-react'; // Ícone de download adicionado
+import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { Play, Download } from 'lucide-react';
 import videoSurpresa from '../assets/carta para Vitoria.mp4';
 
 export default function SurpresaPage() {
@@ -21,13 +21,13 @@ export default function SurpresaPage() {
     }, 1500);
   };
 
-  const textVariants = {
+ const textVariants: Variants = {
     initial: { opacity: 0, y: 30, filter: "blur(4px)" },
     in: { 
       opacity: 1, 
       y: 0, 
       filter: "blur(0px)", 
-      transition: { duration: 1.5, ease: "easeOut" } // <-- A correção está aqui
+      transition: { duration: 1.5, ease: "easeOut" } 
     },
     out: { 
       opacity: 0, 
@@ -36,7 +36,6 @@ export default function SurpresaPage() {
       transition: { duration: 1, ease: "easeInOut" } 
     }
   };
-
   return (
     <div className={`mobile-wrapper step-bg-${step}`} onClick={step < 4 ? nextStep : undefined}>
       
